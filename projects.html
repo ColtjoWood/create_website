@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects - Academic Portfolio</title>
+    <title>Projects - Colt Wood</title>
+
     <style>
         * {
             margin: 0;
@@ -12,10 +13,38 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
+        :root {
+            --bg: #0b0b0d;
+            --surface: #131316;
+            --surface-light: #1a1a1f;
+            --border: #29292f;
+
+            --text: #f5f5f5;
+            --text-muted: #a8a8b3;
+
+            --red: #cc0000;
+            --red-light: #ef233c;
+            --red-dark: #8b0000;
+
+            --shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            background-color: #ffffff;
-            color: #333;
+            background:
+                radial-gradient(
+                    circle at top right,
+                    rgba(204, 0, 0, 0.10),
+                    transparent 30%
+                ),
+                var(--bg);
+
+            color: var(--text);
             line-height: 1.6;
+            min-height: 100vh;
         }
 
         .container {
@@ -24,37 +53,257 @@
             padding: 2rem;
         }
 
-        .project-card {
-            background: #f8f9fa;
-            border-radius: 8px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            transition: transform 0.3s ease;
-            border: 1px solid #e9ecef;
+        /* --------------------
+           Navigation
+        -------------------- */
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 1rem 1.3rem;
+            margin-bottom: 2.5rem;
+
+            background: rgba(19, 19, 22, 0.85);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(10px);
         }
 
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        .name-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            letter-spacing: 0.5px;
+
+            transition:
+                color 0.3s ease,
+                transform 0.3s ease;
+        }
+
+        .name-title:hover {
+            color: var(--red-light);
+            transform: translateY(-2px);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #d4d4dc;
+
+            padding: 0.55rem 0.95rem;
+            border-radius: 8px;
+
+            transition:
+                color 0.3s ease,
+                background-color 0.3s ease,
+                transform 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #ffffff;
+            background-color: var(--red-dark);
+            transform: translateY(-2px);
+        }
+
+        /* --------------------
+           Page Heading
+        -------------------- */
+
+        .page-heading {
+            margin-bottom: 2rem;
+        }
+
+        .page-heading h1 {
+            font-size: 2.2rem;
+            color: #ffffff;
+        }
+
+        .page-heading h1::after {
+            content: "";
+            display: block;
+
+            width: 55px;
+            height: 3px;
+
+            background-color: var(--red);
+            border-radius: 10px;
+
+            margin-top: 0.5rem;
+        }
+
+        .page-heading p {
+            color: var(--text-muted);
+            margin-top: 0.8rem;
+        }
+
+        /* --------------------
+           Project Cards
+        -------------------- */
+
+        .project-card {
+            position: relative;
+            overflow: hidden;
+
+            background: linear-gradient(
+                145deg,
+                var(--surface),
+                #101012
+            );
+
+            border: 1px solid var(--border);
+            border-radius: 18px;
+
+            padding: 2rem;
+            margin-bottom: 2rem;
+
+            box-shadow: var(--shadow);
+        }
+
+        .project-card::before {
+            content: "";
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 3px;
+
+            background: linear-gradient(
+                90deg,
+                var(--red),
+                var(--red-light),
+                transparent
+            );
+        }
+
+        /* --------------------
+           Project Header
+        -------------------- */
+
+        .project-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .project-title-group {
+            flex-grow: 1;
         }
 
         .project-title {
-            font-size: 1.5rem;
-            color: #2196F3;
-            margin-bottom: 1rem;
+            font-size: 1.55rem;
+            color: #ffffff;
+            margin: 0;
         }
+
+        .project-title a {
+            color: #ffffff;
+            text-decoration: none;
+
+            transition:
+                color 0.3s ease,
+                text-shadow 0.3s ease;
+        }
+
+        .project-title a:hover {
+            color: var(--red-light);
+            text-shadow: 0 0 12px rgba(239, 35, 60, 0.25);
+        }
+
+        /* --------------------
+           Timeline
+        -------------------- */
+
+        .project-timeline {
+            font-size: 0.9rem;
+
+            color: #ff6b78;
+            background: rgba(204, 0, 0, 0.13);
+
+            border: 1px solid rgba(239, 35, 60, 0.3);
+
+            padding: 0.45rem 0.85rem;
+            border-radius: 999px;
+
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        /* --------------------
+           Description
+        -------------------- */
 
         .project-description {
             margin-bottom: 1.5rem;
+
+            padding: 1rem 1.1rem;
+
+            background-color: rgba(255, 255, 255, 0.025);
+            border-radius: 8px;
         }
+
+        .project-description p {
+            color: #d0d0d7;
+            margin-bottom: 0.8rem;
+        }
+
+        .project-description p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* --------------------
+           Links
+        -------------------- */
+
+        .highlight-link {
+            color: var(--red-light);
+            text-decoration: none;
+            font-weight: 600;
+
+            transition:
+                color 0.3s ease,
+                text-shadow 0.3s ease;
+        }
+
+        .highlight-link:hover {
+            color: #ff5364;
+            text-decoration: underline;
+
+            text-shadow:
+                0 0 12px rgba(239, 35, 60, 0.3);
+        }
+
+        /* --------------------
+           Key Features
+        -------------------- */
 
         .key-features {
             margin-bottom: 1.5rem;
+
+            padding: 1rem 1.1rem;
+
+            background-color: rgba(255, 255, 255, 0.018);
+
+            border-left: 3px solid var(--red);
+            border-radius: 0 8px 8px 0;
         }
 
-        .key-features h4 {
-            margin-bottom: 0.5rem;
-            color: #333;
+        .key-features h4,
+        .skills-section h4 {
+            color: #ffffff;
+            margin-bottom: 0.8rem;
+            font-size: 1rem;
         }
 
         .key-features ul {
@@ -63,17 +312,32 @@
         }
 
         .key-features li {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.55rem;
             padding-left: 1.5rem;
+
             position: relative;
+
+            color: #c8c8d0;
+        }
+
+        .key-features li:last-child {
+            margin-bottom: 0;
         }
 
         .key-features li::before {
             content: "•";
-            color: #2196F3;
+
+            color: var(--red-light);
+
             position: absolute;
             left: 0;
+
+            font-size: 1.2rem;
         }
+
+        /* --------------------
+           Technologies / Skills
+        -------------------- */
 
         .skills-section {
             margin-top: 1.5rem;
@@ -82,228 +346,468 @@
         .skills-grid {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
+
+            gap: 0.65rem;
             margin-top: 0.5rem;
         }
 
         .skill-tag {
-            background: #e3f2fd;
-            color: #1976d2;
-            padding: 0.4rem 0.8rem;
-            border-radius: 4px;
-            font-size: 0.9rem;
+            position: relative;
+
+            background-color: var(--surface-light);
+            color: #eeeeF2;
+
+            border: 1px solid #33333a;
+
+            padding: 0.45rem 0.85rem;
+            border-radius: 999px;
+
+            font-size: 0.88rem;
             font-weight: 500;
+
+            transition:
+                transform 0.3s ease,
+                background-color 0.3s ease,
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
         }
 
-        h2 {
-            font-size: 2rem;
-            color: #333;
-            margin-bottom: 2rem;
+        .skill-tag::before {
+            content: "";
+
+            display: inline-block;
+
+            width: 6px;
+            height: 6px;
+
+            margin-right: 0.5rem;
+
+            background-color: var(--red-light);
+            border-radius: 50%;
+
+            vertical-align: middle;
         }
 
-        .project-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
+        .skill-tag:hover {
+            transform: translateY(-3px);
+
+            background-color: rgba(204, 0, 0, 0.17);
+            border-color: var(--red);
+
+            box-shadow:
+                0 7px 18px rgba(0, 0, 0, 0.25),
+                0 0 15px rgba(204, 0, 0, 0.08);
         }
 
-        .project-title-group {
-            flex-grow: 1;
-        }
-
-        .project-timeline {
-            font-size: 0.9rem;
-            color: #1976d2;
-            background: #e3f2fd;
-            padding: 0.4rem 0.8rem;
-            border-radius: 4px;
-            font-weight: 500;
-            white-space: nowrap;
-        }
+        /* --------------------
+           Responsive
+        -------------------- */
 
         @media (max-width: 768px) {
             .container {
                 padding: 1rem;
             }
 
+            nav {
+                margin-bottom: 1.5rem;
+            }
+
+            .nav-links {
+                display: flex;
+                gap: 0.25rem;
+            }
+
+            .nav-links a {
+                padding: 0.45rem 0.65rem;
+                font-size: 0.9rem;
+            }
+
+            .page-heading h1 {
+                font-size: 1.8rem;
+            }
+
             .project-card {
                 padding: 1.5rem;
+                border-radius: 14px;
             }
 
             .project-header {
                 flex-direction: column;
                 align-items: flex-start;
+                gap: 0.7rem;
+            }
+
+            .project-title {
+                font-size: 1.35rem;
+            }
+
+            .project-description,
+            .key-features {
+                padding: 0.9rem;
+            }
+        }
+
+        @media (max-width: 500px) {
+            nav {
+                flex-direction: column;
+                gap: 0.9rem;
+            }
+
+            .nav-links {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .container {
+                padding: 0.8rem;
+            }
+
+            .project-card {
+                padding: 1.2rem;
+                margin-bottom: 1.3rem;
+            }
+
+            .skills-grid {
                 gap: 0.5rem;
+            }
+
+            .skill-tag {
+                padding: 0.4rem 0.7rem;
+                font-size: 0.82rem;
             }
         }
     </style>
 </head>
+
 <body>
+
     <div class="container">
-        <h2>Projects</h2>
 
-    <!-- Enterprise Network Design -->
-    <div class="project-card">
-        <div class="project-header">
-            <div class="project-title-group">
-                <h3 class="project-title">
-                    <a href="https://github.com/ColtjoWood/enterprise-network-design"
-                       class="highlight-link"
-                       target="_blank"
-                       rel="noopener noreferrer">
-                        Enterprise Network Design
-                    </a>
-                </h3>
-            </div>
-            <span class="project-timeline">2026</span>
-        </div>
+        <!-- Navigation -->
+        <nav>
+            <a href="index.html" class="name-title">Colt Wood</a>
 
-        <div class="project-description">
-            <p>
-                Designed and built a multi-site enterprise network in Cisco Packet Tracer to gain hands-on
-                experience with network design, configuration, routing, switching, and troubleshooting.
-            </p>
-            <p>
-                <a href="https://github.com/ColtjoWood/enterprise-network-design"
-                   class="highlight-link"
-                   target="_blank"
-                   rel="noopener noreferrer">
-                    View GitHub Repository →
+            <div class="nav-links">
+                <a href="projects.html">Projects</a>
+                <a href="files/Colt_Wood_Resume.pdf" target="_blank">
+                    Resume
                 </a>
+            </div>
+        </nav>
+
+        <!-- Page Heading -->
+        <div class="page-heading">
+            <h1>Projects</h1>
+            <p>
+                A selection of networking, systems, and software
+                projects I've worked on.
             </p>
         </div>
 
-        <div class="key-features">
-            <h4>Key Features</h4>
-            <ul>
-                <li>Designed a multi-site topology connecting Lubbock HQ with Dallas and Austin branch networks</li>
-                <li>Segmented the network using VLANs, 802.1Q trunking, VLSM, and inter-VLAN routing</li>
-                <li>Configured OSPF dynamic routing, centralized DHCP/DNS, NAT/PAT, and wireless networking</li>
-                <li>Implemented LACP EtherChannel redundancy, port security, and access-layer security</li>
-                <li>Troubleshot OSPF, DHCP, EtherChannel, and Layer 2/Layer 3 connectivity issues</li>
-                <li>Performed end-to-end validation and documented topology, configurations, and troubleshooting on GitHub</li>
-            </ul>
-        </div>
 
-        <div class="skills-section">
-            <h4>Technologies & Skills</h4>
-            <div class="skills-grid">
-                <span class="skill-tag">Cisco Packet Tracer</span>
-                <span class="skill-tag">TCP/IP</span>
-                <span class="skill-tag">VLANs</span>
-                <span class="skill-tag">VLSM</span>
-                <span class="skill-tag">OSPF</span>
-                <span class="skill-tag">DHCP</span>
-                <span class="skill-tag">DNS</span>
-                <span class="skill-tag">NAT/PAT</span>
-                <span class="skill-tag">LACP</span>
-                <span class="skill-tag">Port Security</span>
-                <span class="skill-tag">Network Troubleshooting</span>
+        <!-- =====================================
+             Enterprise Network Design
+        ====================================== -->
+
+        <div class="project-card">
+
+            <div class="project-header">
+
+                <div class="project-title-group">
+
+                    <h3 class="project-title">
+
+                        <a
+                            href="https://github.com/ColtjoWood/enterprise-network-design"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Enterprise Network Design
+                        </a>
+
+                    </h3>
+
+                </div>
+
+                <span class="project-timeline">
+                    2026
+                </span>
+
             </div>
-        </div>
-    </div>
 
-    <!-- Infinity Training & Wellness Website -->
-    <div class="project-card">
-        <div class="project-header">
-            <div class="project-title-group">
-                <h3 class="project-title">
-                    <a href="https://infinity-site.vercel.app/"
-                       class="highlight-link"
-                       target="_blank"
-                       rel="noopener noreferrer">
-                        Infinity Training & Wellness Website
+
+            <div class="project-description">
+
+                <p>
+                    Designed and built a multi-site enterprise network
+                    in Cisco Packet Tracer to gain hands-on experience
+                    with network design, configuration, routing,
+                    switching, and troubleshooting.
+                </p>
+
+                <p>
+                    <a
+                        href="https://github.com/ColtjoWood/enterprise-network-design"
+                        class="highlight-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        View GitHub Repository →
                     </a>
-                </h3>
+                </p>
+
             </div>
-            <span class="project-timeline">May 2025 - July 2025</span>
-        </div>
 
-        <div class="project-description">
-            <p>
-                Designed and developed a responsive website for Infinity Training & Wellness to showcase
-                the gym's services, trainers, membership options, and business information through a modern,
-                user-friendly interface.
-            </p>
-            <p>
-                <a href="https://infinity-site.vercel.app/"
-                   class="highlight-link"
-                   target="_blank"
-                   rel="noopener noreferrer">
-                    View Live Website →
-                </a>
-            </p>
-        </div>
 
-        <div class="key-features">
-            <h4>Key Features</h4>
-            <ul>
-                <li>Developed a responsive interface for desktop and mobile devices</li>
-                <li>Created reusable React components for site content and navigation</li>
-                <li>Designed pages highlighting gym services, trainers, memberships, and business information</li>
-                <li>Focused on clean navigation, usability, responsive design, and website performance</li>
-            </ul>
-        </div>
+            <div class="key-features">
 
-        <div class="skills-section">
-            <h4>Technologies & Skills</h4>
-            <div class="skills-grid">
-                <span class="skill-tag">React.js</span>
-                <span class="skill-tag">JavaScript</span>
-                <span class="skill-tag">HTML</span>
-                <span class="skill-tag">CSS</span>
-                <span class="skill-tag">Responsive Design</span>
-                <span class="skill-tag">UI Development</span>
+                <h4>Key Features</h4>
+
+                <ul>
+                    <li>
+                        Designed a multi-site topology connecting
+                        Lubbock HQ with Dallas and Austin branch networks
+                    </li>
+
+                    <li>
+                        Segmented the network using VLANs, 802.1Q
+                        trunking, VLSM, and inter-VLAN routing
+                    </li>
+
+                    <li>
+                        Configured OSPF dynamic routing, centralized
+                        DHCP/DNS, NAT/PAT, and wireless networking
+                    </li>
+
+                    <li>
+                        Implemented LACP EtherChannel redundancy,
+                        port security, and access-layer security
+                    </li>
+
+                    <li>
+                        Troubleshot OSPF, DHCP, EtherChannel, and
+                        Layer 2/Layer 3 connectivity issues
+                    </li>
+
+                    <li>
+                        Performed end-to-end validation and documented
+                        topology, configurations, and troubleshooting
+                        on GitHub
+                    </li>
+                </ul>
+
             </div>
+
+
+            <div class="skills-section">
+
+                <h4>Technologies & Skills</h4>
+
+                <div class="skills-grid">
+                    <span class="skill-tag">Cisco Packet Tracer</span>
+                    <span class="skill-tag">TCP/IP</span>
+                    <span class="skill-tag">VLANs</span>
+                    <span class="skill-tag">VLSM</span>
+                    <span class="skill-tag">OSPF</span>
+                    <span class="skill-tag">DHCP</span>
+                    <span class="skill-tag">DNS</span>
+                    <span class="skill-tag">NAT/PAT</span>
+                    <span class="skill-tag">LACP</span>
+                    <span class="skill-tag">Port Security</span>
+                    <span class="skill-tag">Network Troubleshooting</span>
+                </div>
+
+            </div>
+
         </div>
+
+
+        <!-- =====================================
+             Infinity Training & Wellness
+        ====================================== -->
+
+        <div class="project-card">
+
+            <div class="project-header">
+
+                <div class="project-title-group">
+
+                    <h3 class="project-title">
+
+                        <a
+                            href="https://infinity-site.vercel.app/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Infinity Training & Wellness Website
+                        </a>
+
+                    </h3>
+
+                </div>
+
+                <span class="project-timeline">
+                    May 2025 - July 2025
+                </span>
+
+            </div>
+
+
+            <div class="project-description">
+
+                <p>
+                    Designed and developed a responsive website for
+                    Infinity Training & Wellness to showcase the gym's
+                    services, trainers, membership options, and business
+                    information through a modern, user-friendly interface.
+                </p>
+
+                <p>
+                    <a
+                        href="https://infinity-site.vercel.app/"
+                        class="highlight-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        View Live Website →
+                    </a>
+                </p>
+
+            </div>
+
+
+            <div class="key-features">
+
+                <h4>Key Features</h4>
+
+                <ul>
+                    <li>
+                        Developed a responsive interface for desktop
+                        and mobile devices
+                    </li>
+
+                    <li>
+                        Created reusable React components for site
+                        content and navigation
+                    </li>
+
+                    <li>
+                        Designed pages highlighting gym services,
+                        trainers, memberships, and business information
+                    </li>
+
+                    <li>
+                        Focused on clean navigation, usability,
+                        responsive design, and website performance
+                    </li>
+                </ul>
+
+            </div>
+
+
+            <div class="skills-section">
+
+                <h4>Technologies & Skills</h4>
+
+                <div class="skills-grid">
+                    <span class="skill-tag">React.js</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">HTML</span>
+                    <span class="skill-tag">CSS</span>
+                    <span class="skill-tag">Responsive Design</span>
+                    <span class="skill-tag">UI Development</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================
+             Linux Office Lab Server
+        ====================================== -->
+
+        <div class="project-card">
+
+            <div class="project-header">
+
+                <div class="project-title-group">
+
+                    <h3 class="project-title">
+                        Linux Office Lab Server
+                    </h3>
+
+                </div>
+
+                <span class="project-timeline">
+                    2026
+                </span>
+
+            </div>
+
+
+            <div class="project-description">
+
+                <p>
+                    Rebuilt and configured a Dell PowerEdge server as a
+                    personal IT lab environment for gaining hands-on
+                    experience with server hardware, Linux administration,
+                    storage, networking, and services.
+                </p>
+
+            </div>
+
+
+            <div class="key-features">
+
+                <h4>Key Features</h4>
+
+                <ul>
+                    <li>
+                        Configured RAID storage and installed Ubuntu Server
+                    </li>
+
+                    <li>
+                        Configured network connectivity and remote SSH access
+                    </li>
+
+                    <li>
+                        Installed and configured Samba for network file sharing
+                    </li>
+
+                    <li>
+                        Created and managed Linux users and permissions
+                    </li>
+
+                    <li>
+                        Used the server as a lab environment for Linux
+                        and IT administration practice
+                    </li>
+                </ul>
+
+            </div>
+
+
+            <div class="skills-section">
+
+                <h4>Technologies & Skills</h4>
+
+                <div class="skills-grid">
+                    <span class="skill-tag">Linux</span>
+                    <span class="skill-tag">Ubuntu Server</span>
+                    <span class="skill-tag">SSH</span>
+                    <span class="skill-tag">Samba</span>
+                    <span class="skill-tag">RAID</span>
+                    <span class="skill-tag">Server Hardware</span>
+                    <span class="skill-tag">User Management</span>
+                    <span class="skill-tag">Network File Sharing</span>
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
-
-    <!-- Linux Office Lab Server -->
-    <div class="project-card">
-        <div class="project-header">
-            <div class="project-title-group">
-                <h3 class="project-title">Linux Office Lab Server</h3>
-            </div>
-            <span class="project-timeline">2026</span>
-        </div>
-
-        <div class="project-description">
-            <p>
-                Rebuilt and configured a Dell PowerEdge server as a personal IT lab environment for gaining
-                hands-on experience with server hardware, Linux administration, storage, networking, and services.
-            </p>
-        </div>
-
-        <div class="key-features">
-            <h4>Key Features</h4>
-            <ul>
-                <li>Configured RAID storage and installed Ubuntu Server</li>
-                <li>Configured network connectivity and remote SSH access</li>
-                <li>Installed and configured Samba for network file sharing</li>
-                <li>Created and managed Linux users and permissions</li>
-                <li>Used the server as a lab environment for Linux and IT administration practice</li>
-            </ul>
-        </div>
-
-        <div class="skills-section">
-            <h4>Technologies & Skills</h4>
-            <div class="skills-grid">
-                <span class="skill-tag">Linux</span>
-                <span class="skill-tag">Ubuntu Server</span>
-                <span class="skill-tag">SSH</span>
-                <span class="skill-tag">Samba</span>
-                <span class="skill-tag">RAID</span>
-                <span class="skill-tag">Server Hardware</span>
-                <span class="skill-tag">User Management</span>
-                <span class="skill-tag">Network File Sharing</span>
-            </div>
-        </div>
-    </div>
-
-</div>
-```
 
 </body>
-
 </html>
