@@ -38,8 +38,7 @@ This website is deployed using GitHub Pages.
 
 GitHub Pages Link:
 
-`ADD-YOUR-GITHUB-PAGES-LINK-HERE`
-
+https://coltjowood.github.io/create_website/
 ## Viewing the Project
 
 You can view the deployed portfolio using the GitHub Pages link above.
